@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verkehrsservice Deutschland – Zuverlässig. Sicher. Transparent.</title>
+
+  <!-- Google Fonts: DM Sans (body) + Barlow Condensed (display) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    / =====================================================
+       CSS CUSTOM PROPERTIES
+    ===================================================== */
+    :root {
+      --navy:       #0b1f3a;
+      --navy-mid:   #122d52;
+      --navy-light: #1a3d6e;
+      --orange:     #e8560a;
+      --orange-lt:  #ff6b1a;
+      --slate:      #5b6b82;
+      --silver:     #9aabbf;
+      --ash:        #e4eaf1;
+      --white:      #ffffff;
+      --off-white:  #f5f8fb;
+
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      --shadow-card: 0 4px 24px rgba(11,31,58,.10), 0 1px 4px rgba(11,31,58,.06);
+      --shadow-card-hover: 0 12px 40px rgba(11,31,58,.18), 0 2px 8px rgba(11,31,58,.10);
+      --radius: 14px;
+      --transition: .25s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* =====================================================
+       RESET & BASE
+    ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* =====================================================
+       SCROLL REVEAL ANIMATION
+    ===================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .55s cubic-bezier(.4,0,.2,1),
+                  transform .55s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: .10s; }
+    .reveal-delay-2 { transition-delay: .20s; }
+    .reveal-delay-3 { transition-delay: .30s; }
+    .reveal-delay-4 { transition-delay: .40s; }
+
+    /* =====================================================
+       LAYOUT HELPERS
+    ===================================================== */
+    .container {
+      width: 90%;
+      max-width: 1160px;
+      margin-inline: auto;
+    }
+
+    section { padding: 96px 0; }
+
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--slate);
+      max-width: 540px;
+    }
+
+    /* =====================================================
+       BUTTON
+    ===================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(232,86,10,.35);
+    }
+    .btn-primary:hover {
+      background: var(--orange-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(232,86,10,.45);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.4);
+    }
+    .btn-ghost:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,.08);
+    }
+
+    /* =====================================================
+       HEADER / NAVBAR
+    ===================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,31,58,.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      transition: box-shadow var(--transition);
+    }
+    .navbar.scrolled {
+      box-shadow: 0 4px 24px rgba(11,31,58,.4);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+    }
+    .logo__icon {
+      width: 38px;
+      height: 38px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .logo__text {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      line-height: 1.15;
+    }
+    .logo__text span { color: var(--orange); }
+
+    /* Nav links */
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.7);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--orange);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Hamburger (mobile) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--navy-mid);
+      padding: 12px 20px 20px;
+      gap: 4px;
+    }
+    .mobile-menu a {
+      color: rgba(255,255,255,.8);
+      font-size: .95rem;
+      font-weight: 500;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--orange); }
+
+    /* =====================================================
+       HERO SECTION
+    ===================================================== */
+    .hero {
+      position: relative;
+      background: var(--navy);
+      overflow: hidden;
+      padding: 120px 0 100px;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Geometric background elements */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -120px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,61,110,.8) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -60px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,86,10,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Diagonal accent stripe */
+    .hero__stripe {
+      position: absolute;
+      top: 0; right: 0;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(26,61,110,.5) 0%, rgba(11,31,58,0) 60%);
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+      pointer-events: none;
+    }
+
+    /* Grid pattern overlay */
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,86,10,.15);
+      border: 1px solid rgba(232,86,10,.3);
+      color: var(--orange-lt);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero__badge i { font-size: .75rem; }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 24px;
+      letter-spacing: -.01em;
+    }
+    .hero__title em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero__sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 44px;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero__stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 64px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat__num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat__num span { color: var(--orange); }
+    .stat__label {
+      font-size: .78rem;
+      color: rgba(255,255,255,.5);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* =====================================================
+       SERVICES SECTION
+    ===================================================== */
+    .services {
+      background: var(--off-white);
+    }
+
+    .services__header {
+      margin-bottom: 56px;
+    }
+
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(11,31,58,.06);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--orange-lt));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card-hover);
+      border-color: rgba(232,86,10,.12);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-card__icon {
+      width: 54px; height: 54px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-lt) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(232,86,10,.3);
+    }
+
+    .service-card__title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      letter-spacing: .01em;
+    }
+
+    .service-card__text {
+      font-size: .92rem;
+      color: var(--slate);
+      line-height: 1.7;
+    }
+
+    /* =====================================================
+       ABOUT SECTION
+    ===================================================== */
+    .about {
+      background: var(--white);
+    }
+
+    .about__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about__visual {
+      position: relative;
+    }
+
+    .about__bg-box {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .about__bg-box::before {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(232,86,10,.12);
+    }
+
+    .about__feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about__feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .about__feature-icon {
+      width: 36px; height: 36px;
+      background: rgba(232,86,10,.18);
+      border: 1px solid rgba(232,86,10,.3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      color: var(--orange-lt);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .about__feature-title {
+      font-weight: 600;
+      font-size: .95rem;
+      margin-bottom: 2px;
+    }
+    .about__feature-desc {
+      font-size: .82rem;
+      color: rgba(255,255,255,.6);
+    }
+
+    .about__content .section-sub {
+      margin-bottom: 28px;
+    }
+
+    .about__text {
+      font-size: .98rem;
+      color: var(--slate);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    /* =====================================================
+       CONTACT SECTION
+    ===================================================== */
+    .contact {
+      background: var(--off-white);
+    }
+
+    .contact__inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contact__info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--white);
+      border-radius: 10px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(11,31,58,.05);
+      transition: transform var(--transition);
+    }
+    .contact-item:hover { transform: translateX(4px); }
+
+    .contact-item__icon {
+      width: 40px; height: 40px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-lt));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: .95rem;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(232,86,10,.25);
+    }
+
+    .contact-item__label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 2px;
+    }
+    .contact-item__value {
+      font-size: .95rem;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    /* Contact form */
+    .contact-form {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 44px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(11,31,58,.06);
+    }
+
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--slate);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 12px 16px;
+      border: 1.5px solid var(--ash);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: .95rem;
+      color: var(--navy);
+      background: var(--off-white);
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      outline: none;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--orange);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(232,86,10,.1);
+    }
+    .form-group textarea { height: 130px; }
+
+    .form-note {
+      font-size: .78rem;
+      color: var(--silver);
+      margin-top: -8px;
+      margin-bottom: 20px;
+    }
+
+    .form-submit {
+      width: 100%;
+      justify-content: center;
+      padding: 15px;
+      font-size: 1rem;
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.6);
+      padding: 0;
+    }
+
+    .footer__main {
+      padding: 60px 0 40px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer__brand .logo {
+      margin-bottom: 16px;
+    }
+    .footer__brand p {
+      font-size: .88rem;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer__col-title {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 16px;
+    }
+
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer__links a {
+      font-size: .88rem;
+      color: rgba(255,255,255,.55);
+      transition: color var(--transition);
+    }
+    .footer__links a:hover { color: var(--orange-lt); }
+
+    .footer__impressum p {
+      font-size: .83rem;
+      line-height: 1.8;
+    }
+
+    .footer__bottom {
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer__copy {
+      font-size: .8rem;
+    }
+    .footer__legal {
+      display: flex;
+      gap: 20px;
+      font-size: .8rem;
+    }
+    .footer__legal a {
+      color: rgba(255,255,255,.4);
+      transition: color var(--transition);
+    }
+    .footer__legal a:hover { color: var(--white); }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+    @media (max-width: 900px) {
+      .about__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .contact__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .footer__main {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer__brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      section { padding: 72px 0; }
+
+      .hero { padding: 80px 0 72px; min-height: auto; }
+      .hero__stats { gap: 28px; }
+
+      .contact-form { padding: 28px 22px; }
+
+      .footer__main {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+
+    /* Open mobile menu via checkbox hack */
+    #menu-toggle { display: none; }
+    #menu-toggle:checked ~ .mobile-menu { display: flex; }
+    #menu-toggle:checked ~ .navbar__inner .hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    #menu-toggle:checked ~ .navbar__inner .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    #menu-toggle:checked ~ .navbar__inner .hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================
+       NAVBAR
+  =================================================== -->
+  <header>
+    <nav class="navbar" id="navbar" aria-label="Hauptnavigation">
+      <input type="checkbox" id="menu-toggle" aria-hidden="true" />
+      <div class="container navbar__inner">
+
+        <!-- Logo -->
+        <a href="#start" class="logo" aria-label="Zur Startseite">
+          <div class="logo__icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
+          <div class="logo__text">Verkehrs<span>service</span></div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <ul class="nav-links" role="list">
+          <li><a href="#start">Start</a></li>
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+
+        <!-- Hamburger (mobile) -->
+        <label for="menu-toggle" class="hamburger" aria-label="Menü öffnen" role="button" tabindex="0">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div class="mobile-menu" role="navigation" aria-label="Mobile Navigation">
+        <a href="#start" onclick="document.getElementById('menu-toggle').checked=false">Start</a>
+        <a href="#leistungen" onclick="document.getElementById('menu-toggle').checked=false">Leistungen</a>
+        <a href="#ueber-uns" onclick="document.getElementById('menu-toggle').checked=false">Über uns</a>
+        <a href="#kontakt" onclick="document.getElementById('menu-toggle').checked=false">Kontakt</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================================================
+       HERO SECTION
+  =================================================== -->
+  <section class="hero" id="start" aria-label="Startbereich">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="hero__stripe" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero__content">
+
+        <div class="hero__badge reveal">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          Deutschlandweit im Einsatz
+        </div>
+
+        <h1 class="hero__title reveal reveal-delay-1">
+          Ihr zuverlässiger<br />
+          <em>Verkehrsservice</em><br />
+          deutschlandweit
+        </h1>
+
+        <p class="hero__sub reveal reveal-delay-2">
+          Professionelle Wartung, Kontrolle und lückenlose Dokumentation von Verkehrseinrichtungen und Baustellenabsicherungen – schnell, transparent und rund um die Uhr verfügbar.
+        </p>
+
+        <div class="hero__actions reveal reveal-delay-3">
+          <a href="#kontakt" class="btn btn-primary">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            Kontakt aufnehmen
+          </a>
+          <a href="#leistungen" class="btn btn-ghost">
+            Leistungen entdecken
+          </a>
+        </div>
+
+        <div class="hero__stats reveal reveal-delay-4" aria-label="Kenndaten">
+          <div class="stat">
+            <span class="stat__num">24<span>/7</span></span>
+            <span class="stat__label">Notfallservice</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">100<span>%</span></span>
+            <span class="stat__label">Deutschlandweit</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">GPS</span>
+            <span class="stat__label">Echtzeitkontrolle</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       LEISTUNGEN
+  =================================================== -->
+  <section class="services" id="leistungen" aria-labelledby="services-heading">
+    <div class="container">
+
+      <div class="services__header">
+        <span class="section-label reveal">Unsere Leistungen</span>
+        <h2 class="section-title reveal reveal-delay-1" id="services-heading">
+          Alles aus einer Hand –<br />sicher und zuverlässig
+        </h2>
+        <p class="section-sub reveal reveal-delay-2">
+          Von der Regelmäßigen Kontrolle bis zum Notfalleinsatz – wir gewährleisten jederzeit die Sicherheit Ihrer Verkehrseinrichtungen.
+        </p>
+      </div>
+
+      <div class="services__grid">
+
+        <!-- Karte 1: Wartung und Kontrolle -->
+        <article class="service-card reveal">
+          <div class="service-card__icon" aria-hidden="true">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </div>
+          <h3 class="service-card__title">Wartung und Kontrolle</h3>
+          <p class="service-card__text">
+            Regelmäßige Überprüfung und Instandhaltung der Baustellenabsicherung gemäß verkehrsrechtlicher Anordnung. Kontrolle, Reinigung und Reparatur von Verkehrsschildern, Markierungen, Leitelementen, Beleuchtung und Schutzeinrichtungen.
+          </p>
+        </article>
+
+        <!-- Karte 2: Sofortige Problemlösung -->
+        <article class="service-card reveal reveal-delay-1">
+          <div class="service-card__icon" aria-hidden="true">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h3 class="service-card__title">Sofortige Problemlösung</h3>
+          <p class="service-card__text">
+            Probleme werden direkt vor Ort behoben. Instandsetzung nach Unwetter oder Unfällen. 24/7 Notfallservice für schnelle Reaktionszeiten – wann immer Sie uns brauchen.
+          </p>
+        </article>
+
+        <!-- Karte 3: Dokumentation -->
+        <article class="service-card reveal reveal-delay-2">
+          <div class="service-card__icon" aria-hidden="true">
+            <i class="fa-solid fa-file-shield"></i>
+          </div>
+          <h3 class="service-card__title">Dokumentation &amp; Transparenz</h3>
+          <p class="service-card__text">
+            Elektronisches Echtzeitkontrollsystem mit GPS. Alle Ereignisse werden sicher gespeichert. Kunden erhalten Berichte täglich, wöchentlich oder monatlich – mit Echtzeit-Benachrichtigung, Bildern und Beschreibungen.
+          </p>
+        </article>
+
+        <!-- Karte 4: Datenschutz -->
+        <article class="service-card reveal reveal-delay-3">
+          <div class="service-card__icon" aria-hidden="true">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h3 class="service-card__title">Datenschutz</h3>
+          <p class="service-card__text">
+            Alle Systeme entsprechen höchsten Datenschutzstandards nach DSGVO und gewährleisten maximale Datensicherheit für alle erfassten Informationen und Dokumentationen.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       ÜBER UNS
+  =================================================== -->
+  <section class="about" id="ueber-uns" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about__inner">
+
+        <!-- Visual / Feature Box -->
+        <div class="about__visual reveal">
+          <div class="about__bg-box">
+            <ul class="about__feature-list" role="list">
+
+              <li class="about__feature">
+                <div class="about__feature-icon" aria-hidden="true">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <div class="about__feature-title">Maximale Sicherheit</div>
+                  <div class="about__feature-desc">Konsequente Einhaltung aller verkehrsrechtlichen Vorschriften und Normen</div>
+                </div>
+              </li>
+
+              <li class="about__feature">
+                <div class="about__feature-icon" aria-hidden="true">
+                  <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <div>
+                  <div class="about__feature-title">Schnelle Reaktionszeiten</div>
+                  <div class="about__feature-desc">24/7 Bereitschaft – auch an Wochenenden und Feiertagen</div>
+                </div>
+              </li>
+
+              <li class="about__feature">
+                <div class="about__feature-icon" aria-hidden="true">
+                  <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div>
+                  <div class="about__feature-title">Lückenlose Transparenz</div>
+                  <div class="about__feature-desc">GPS-gestützte Echtzeitdokumentation mit regelmäßigen Berichten</div>
+                </div>
+              </li>
+
+              <li class="about__feature">
+                <div class="about__feature-icon" aria-hidden="true">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <div>
+                  <div class="about__feature-title">Deutschlandweiter Einsatz</div>
+                  <div class="about__feature-desc">Flexibel und zuverlässig in allen Bundesländern verfügbar</div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+        <!-- Text Content -->
+        <div class="about__content">
+          <span class="section-label reveal">Über uns</span>
+          <h2 class="section-title reveal reveal-delay-1" id="about-heading">
+            Verlässlichkeit,<br />die man spürt
+          </h2>
+          <p class="about__text reveal reveal-delay-2">
+            Wir sind ein deutschlandweit tätiger Verkehrsservice und bieten zuverlässige Kontrolle, Wartung und Dokumentation von Verkehrseinrichtungen. Unser Fokus liegt auf Sicherheit, Schnelligkeit und Transparenz – damit Ihre Baustellen jederzeit regelkonform abgesichert sind.
+          </p>
+          <p class="about__text reveal reveal-delay-2">
+            Als erfahrener Einzelunternehmer mit Sitz in Mannheim betreuen wir Auftraggeber aus dem gesamten Bundesgebiet. Persönliche Verantwortung, kurze Entscheidungswege und höchste Qualitätsansprüche zeichnen unsere Arbeit aus.
+          </p>
+          <a href="#kontakt" class="btn btn-primary reveal reveal-delay-3">
+            <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+            Zusammenarbeit anfragen
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       KONTAKT
+  =================================================== -->
+  <section class="contact" id="kontakt" aria-labelledby="contact-heading">
+    <div class="container">
+
+      <span class="section-label reveal">Kontakt</span>
+      <h2 class="section-title reveal reveal-delay-1" id="contact-heading">
+        Sprechen Sie uns an
+      </h2>
+      <p class="section-sub reveal reveal-delay-2" style="margin-bottom: 52px;">
+        Wir sind für Sie da – nehmen Sie jederzeit Kontakt auf. Wir melden uns schnellstmöglich bei Ihnen.
+      </p>
+
+      <div class="contact__inner">
+
+        <!-- Kontaktdaten -->
+        <div class="contact__info">
+
+          <div class="contact-item reveal">
+            <div class="contact-item__icon" aria-hidden="true">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <div class="contact-item__label">Adresse</div>
+              <div class="contact-item__value">Lortzingstr. 9<br />68168 Mannheim</div>
+            </div>
+          </div>
+
+          <div class="contact-item reveal reveal-delay-1">
+            <div class="contact-item__icon" aria-hidden="true">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <div class="contact-item__label">Telefon</div>
+              <div class="contact-item__value">Auf Anfrage</div>
+            </div>
+          </div>
+
+          <div class="contact-item reveal reveal-delay-2">
+            <div class="contact-item__icon" aria-hidden="true">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+              <div class="contact-item__label">E-Mail</div>
+              <div class="contact-item__value">Auf Anfrage</div>
+            </div>
+          </div>
+
+          <div class="contact-item reveal reveal-delay-3">
+            <div class="contact-item__icon" aria-hidden="true">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <div class="contact-item__label">Erreichbarkeit</div>
+              <div class="contact-item__value">24/7 Notfallservice<br />Mo–Fr 07:00–18:00 Uhr</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Kontaktformular -->
+        <div class="contact-form reveal reveal-delay-1">
+          <p class="form-title">Nachricht senden</p>
+          <!-- Hinweis: Dieses Formular ist ein reines Frontend-Formular ohne Backend-Anbindung. -->
+          <form action="#" method="post" novalidate aria-label="Kontaktformular">
+
+            <div class="form-group">
+              <label for="name">Ihr Name</label>
+              <input type="text" id="name" name="name" placeholder="Max Mustermann" required autocomplete="name" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-Mail-Adresse</label>
+              <input type="email" id="email" name="email" placeholder="max@beispiel.de" required autocomplete="email" />
+            </div>
+
+            <div class="form-group">
+              <label for="betreff">Betreff</label>
+              <input type="text" id="betreff" name="betreff" placeholder="Ihr Anliegen in wenigen Worten" />
+            </div>
+
+            <div class="form-group">
+              <label for="nachricht">Nachricht</label>
+              <textarea id="nachricht" name="nachricht" placeholder="Beschreiben Sie Ihr Anliegen …" required></textarea>
+            </div>
+
+            <p class="form-note">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>&nbsp;
+              Ihre Daten werden vertraulich behandelt und nicht weitergegeben.
+            </p>
+
+            <button type="submit" class="btn btn-primary form-submit">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+              Nachricht absenden
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       FOOTER
+  =================================================== -->
+  <footer class="footer" aria-label="Seitenfuß">
+    <div class="container">
+
+      <div class="footer__main">
+
+        <!-- Brand -->
+        <div class="footer__brand">
+          <a href="#start" class="logo" aria-label="Zur Startseite">
+            <div class="logo__icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
+            <div class="logo__text">Verkehrs<span>service</span></div>
+          </a>
+          <p>
+            Zuverlässige Kontrolle, Wartung und Dokumentation von Verkehrseinrichtungen – deutschlandweit, rund um die Uhr.
+          </p>
+        </div>
+
+        <!-- Navigation -->
+        <div>
+          <p class="footer__col-title">Navigation</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#start">Start</a></li>
+            <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#ueber-uns">Über uns</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <!-- Impressum -->
+        <div>
+          <p class="footer__col-title">Impressum</p>
+          <div class="footer__impressum">
+            <p>
+              Einzelunternehmer<br />
+              Lortzingstr. 9<br />
+              68168 Mannheim<br /><br />
+              USt-IdNr.: DE364870533
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span id="year"></span> Verkehrsservice. Alle Rechte vorbehalten.
+        </p>
+        <div class="footer__legal">
+          <a href="#impressum">Impressum</a>
+          <a href="#datenschutz">Datenschutz</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ===================================================
+       JAVASCRIPT (minimal)
+  =================================================== -->
+  <script>
+    /* --------------------------------------------------
+       Aktuelles Jahr im Footer
+    -------------------------------------------------- */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* --------------------------------------------------
+       Sticky Navbar Shadow on scroll
+    -------------------------------------------------- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* --------------------------------------------------
+       Scroll Reveal via IntersectionObserver
+    -------------------------------------------------- */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
+
