@@ -15,25 +15,37 @@
 
   <style>
 
-    :root {
-      --navy:       #0b1f3a;
-      --navy-mid:   #122d52;
-      --navy-light: #1a3d6e;
-      --orange:     #e8560a;
-      --orange-lt:  #ff6b1a;
-      --slate:      #5b6b82;
-      --silver:     #9aabbf;
-      --ash:        #e4eaf1;
-      --white:      #ffffff;
-      --off-white:  #f5f8fb;
+:root {
+      /* --- NEUES NEUTRALES FARBSCHEMA --- */
+      
+      /* Hintergründe (Beige/Creme-Töne) */
+      --bg-main:      #fdfcf9; /* Sehr helles, warmes Creme-Weiß (statt reinweiß) */
+      --bg-accent:    #f5f1e8; /* Etwas dunklerer Beige-Ton für Sektionen (statt off-white) */
+      
+      /* Texte & Dunkle Elemente (Grau/Warm-Grau) */
+      --text-main:    #3c3935; /* Dunkles, warmes Grau für Haupttexte (statt navy) */
+      --text-muted:   #79746e; /* Mittleres Grau für Untertitel (statt slate) */
+      --slate:        #79746e; /* Für Kompatibilität mit bestehendem Code */
+      --silver:       #b0aba4; /* Helleres Grau für Linien */
+      --ash:          #e0ddd5; /* Sehr helles Grau für Ränder */
+      
+      /* Akzentfarbe (Das Blau aus deinem Logo) */
+      --brand-blue:   #4a7cce; /* Ein schönes, seriöses Blau aus deinem Logo */
+      --brand-blue-lt:#dee9fc; /* Sehr helles Blau für Hover-Effekte */
+      
+      /* --- Restliche Variablen (bleiben fast gleich) --- */
+      --white:        #ffffff;
+      
+     
+      --orange:       var(--brand-blue); 
+      --orange-lt:    #6b94dc; /* Helleres Blau für Hover */
 
       --font-display: 'Barlow Condensed', sans-serif;
       --font-body:    'DM Sans', sans-serif;
 
-      --shadow-card: 0 4px 24px rgba(11,31,58,.10), 0 1px 4px rgba(11,31,58,.06);
-      --shadow-card-hover: 0 12px 40px rgba(11,31,58,.18), 0 2px 8px rgba(11,31,58,.10);
-      --radius: 14px;
-      --transition: .25s cubic-bezier(.4,0,.2,1);
+      --shadow-card: 0 10px 30px rgba(60, 57, 53, 0.05); /* Sanfterer Schatten */
+      --radius: 12px;
+      --transition: .3s cubic-bezier(.4,0,.2,1);
     }
 
  
@@ -133,36 +145,41 @@
     .btn-primary:active { transform: translateY(0); }
 
     .btn-ghost {
-      background: transparent;
-      color: var(--white);
-      border: 2px solid rgba(255,255,255,.4);
+  background: transparent;
+  color: #4a7cce; /* Das Blau deines Logos */
+  border: 2px solid #4a7cce; /* Blauer Rand statt weißer Rand */
+}
+
+.btn-ghost:hover {
+  background: rgba(74, 124, 206, 0.05); /* Ganz zartes Blau beim Drüberfahren */
+  border-color: #3b6bba;
+}
+  
+
+   .navbar {
+      background: rgba(253, 252, 249, 0.95); /* Neuer heller Cremeton */
+      border-bottom: 1px solid var(--ash); /* Hellgrauer Rand */
+      /* Rest bleibt... */
     }
-    .btn-ghost:hover {
-      border-color: var(--white);
-      background: rgba(255,255,255,.08);
+    
+    /* Die Links in der Navbar */
+    .nav-links a {
+      color: var(--text-main); /* Dunkelgrau */
+    }
+    .nav-links a:hover {
+      color: var(--brand-blue); /* Blau beim Hover */
     }
 
+.navbar.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(11,31,58,.96);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      transition: box-shadow var(--transition);
-    }
-    .navbar.scrolled {
-      box-shadow: 0 4px 24px rgba(11,31,58,.4);
-    }
-
-    .navbar__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 68px;
-    }
+  .navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px; 
+}
 
     /* Logo */
     .logo {
@@ -199,12 +216,16 @@
       align-items: center;
     }
     .nav-links a {
-      font-size: .9rem;
-      font-weight: 500;
-      color: rgba(255,255,255,.7);
-      transition: color var(--transition);
-      position: relative;
-    }
+  font-size: .95rem;
+  font-weight: 600; /* Etwas dicker für bessere Lesbarkeit */
+  color: var(--brand-dark); /* Dein edles Dunkelblau */
+  transition: color var(--transition);
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--brand-blue); /* Das Blau aus deinem Logo beim Drüberfahren */
+}
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -213,7 +234,7 @@
       background: var(--orange);
       transition: width var(--transition);
     }
-    .nav-links a:hover { color: var(--white); }
+  
     .nav-links a:hover::after { width: 100%; }
 
     /* Hamburger (mobile) */
@@ -254,12 +275,15 @@
     .mobile-menu a:hover { color: var(--orange); }
 
 
-    .hero {
+.hero {
       position: relative;
-      background: var(--navy);
+      background-color: var(--bg-accent); /* Neutraler Beige-Ton */
+      background-image: 
+        radial-gradient(at 10% 10%, rgba(74, 124, 206, 0.05) 0px, transparent 50%), /* Ganz sanfter blauer Schimmer oben links */
+        radial-gradient(at 90% 90%, rgba(176, 171, 164, 0.1) 0px, transparent 50%); /* Sanfter Grauschimmer unten rechts */
       overflow: hidden;
-      padding: 120px 0 100px;
-      min-height: 92vh;
+      padding: 150px 0 120px; /* Etwas mehr Platz */
+      min-height: 80vh; /* Nicht ganz so hoch, wirkt moderner */
       display: flex;
       align-items: center;
     }
@@ -295,14 +319,20 @@
     }
 
     /* Grid pattern overlay */
+   /* Raster fast unsichtbar machen */
     .hero__grid {
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 60px 60px;
+        linear-gradient(rgba(121, 116, 110, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(121, 116, 110, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
       pointer-events: none;
+    }
+
+    /* Den harten blauen Streifen entfernen */
+    .hero__stripe {
+      display: none; 
     }
 
     .hero__content {
@@ -311,20 +341,65 @@
       max-width: 700px;
     }
 
+   /* Der kleine Badge oben */
     .hero__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(232,86,10,.15);
-      border: 1px solid rgba(232,86,10,.3);
-      color: var(--orange-lt);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-size: .78rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #dee9fc; /* Sehr helles Blau */
+  border: 1px solid rgba(74, 124, 206, 0.2);
+  color: #4a7cce;
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: .78rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+    /* Der Haupttitel "Ihr zuverlässiger..." */
+   /* 1. Den Haupttitel dunkel machen */
+.hero__title {
+  color: #1e1c1a !important; /* Ein sattes, dunkles Anthrazit */
+}
+
+/* 2. Den Untertext ("Professionelle Wartung...") lesbar machen */
+.hero__sub {
+  color: #4a4641 !important; /* Ein kräftiges Dunkelgrau */
+  font-weight: 500; /* Etwas dicker, damit es auf dem hellen Grund besser wirkt */
+}
+
+/* 3. Die Statistik-Zahlen (24/7, 100%, GPS) */
+.stat__num {
+  color: #1e1c1a !important; /* Tiefdunkel */
+}
+
+.stat__label {
+  color: #5d5954 !important; /* Mittleres Grau für die Beschriftung darunter */
+}
+
+/* 4. Der "Leistungen entdecken" Button (der rechte Button) */
+/* Der war vorher weiß und ist jetzt unsichtbar */
+.btn-ghost {
+  color: #4a7cce !important; /* Blau aus deinem Logo */
+  border: 2px solid #4a7cce !important; 
+}
+
+.btn-ghost:hover {
+  background: rgba(74, 124, 206, 0.1); /* Ganz leichter blauer Hintergrund beim Drüberfahren */
+}
+
+
+
+    /* Das hervorgehobene Wort "Verkehrsservice" */
+    .hero__title em {
+      color: var(--brand-blue); /* Blau statt orange */
+      font-style: normal;
+    }
+
+
+    
+    .stat__label {
+      color: var(--text-muted); /* Mittelgrau */
     }
     .hero__badge i { font-size: .75rem; }
 
@@ -374,7 +449,11 @@
       color: var(--white);
       line-height: 1;
     }
-    .stat__num span { color: var(--orange); }
+    .stat__num span {
+  color: #36382d !important; /* Gleiches Dunkelgrau wie die Zahlen */
+  opacity: 1 !important;
+  display: inline-block;
+}
     .stat__label {
       font-size: .78rem;
       color: rgba(255,255,255,.5);
@@ -473,14 +552,37 @@
       position: relative;
     }
 
-    .about__bg-box {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-      border-radius: var(--radius);
-      padding: 48px 40px;
-      color: var(--white);
-      position: relative;
-      overflow: hidden;
-    }
+   /* Die Box, in der die Icons sind */
+.about__bg-box {
+  background: var(--bg-accent); /* Das neue Beige statt Dunkelblau */
+  border: 1px solid var(--ash);  /* Ein feiner Rand */
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  color: var(--text-main);      /* Dunkler Text statt weiß */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Die Titel neben den Icons (z.B. "Maximale Sicherheit") */
+.about__feature-title {
+  font-weight: 600;
+  font-size: .95rem;
+  margin-bottom: 2px;
+  color: var(--text-main); /* Dunkel statt Weiß */
+}
+
+/* Die kleinen Beschreibungstexte darunter */
+/* Die kleinen Beschreibungen unter den Titeln (z.B. "Konsequente Einhaltung...") */
+.about__feature-desc {
+  font-size: .82rem;
+  color: #79746e !important; /* Mittelgrau statt Weiß */
+  opacity: 1; /* Sicherstellen, dass nichts durchsichtig ist */
+}
+
+/* Falls die Icons in den kleinen Kästen noch weiß sind: */
+.about__feature-icon {
+  color: #4a7cce !important; /* Blau aus deinem Logo */
+}
     .about__bg-box::before {
       content: '';
       position: absolute;
@@ -516,11 +618,7 @@
       flex-shrink: 0;
       margin-top: 2px;
     }
-    .about__feature-title {
-      font-weight: 600;
-      font-size: .95rem;
-      margin-bottom: 2px;
-    }
+
     .about__feature-desc {
       font-size: .82rem;
       color: rgba(255,255,255,.6);
@@ -667,11 +765,40 @@
     /* =====================================================
        FOOTER
     ===================================================== */
-    .footer {
-      background: var(--navy);
-      color: rgba(255,255,255,.6);
-      padding: 0;
-    }
+   .footer {
+  background: var(--bg-accent); /* Neutrales Beige statt Navy */
+  color: var(--text-muted);     /* Grauer Text */
+  padding: 0;
+  border-top: 1px solid var(--ash);
+}
+
+/* Die Spalten-Überschriften im Footer */
+.footer__col-title {
+  color: var(--text-main);      /* Dunkel statt Weiß-Transparent */
+  font-family: var(--font-body);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* Die Links im Footer (Start, Leistungen, etc.) */
+.footer__links a {
+  font-size: .88rem;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.footer__links a:hover {
+  color: var(--brand-blue);    /* Blau beim Drüberfahren */
+}
+
+/* Die rechtlichen Texte ganz unten */
+.footer__copy, .footer__legal a {
+  color: var(--text-muted);
+  font-size: .8rem;
+}
 
     .footer__main {
       padding: 60px 0 40px;
@@ -684,12 +811,33 @@
     .footer__brand .logo {
       margin-bottom: 16px;
     }
-    .footer__brand p {
-      font-size: .88rem;
-      line-height: 1.7;
-      max-width: 280px;
-    }
+    /* Der Text "BauSicher" neben dem Logo im Footer */
+.footer__brand .logo__text, 
+.footer__brand div[style*="font-family: var(--font-display)"] {
+  color: #3c3935 !important; /* Dunkelgrau statt Weiß */
+}
 
+/* Die Beschreibung "Zuverlässige Kontrolle..." im Footer */
+.footer__brand p {
+  color: #79746e !important; /* Mittelgrau statt Weiß */
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Die Spaltentitel ("Navigation", "Impressum") */
+.footer__col-title {
+  color: #3c3935 !important; 
+  opacity: 1;
+}
+
+/* Die Links im Footer */
+.footer__links a {
+  color: #79746e !important;
+}
+
+.footer__links a:hover {
+  color: #4a7cce !important;
+}
     .footer__col-title {
       font-family: var(--font-body);
       font-size: .72rem;
@@ -700,18 +848,7 @@
       margin-bottom: 16px;
     }
 
-    .footer__links {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .footer__links a {
-      font-size: .88rem;
-      color: rgba(255,255,255,.55);
-      transition: color var(--transition);
-    }
-    .footer__links a:hover { color: var(--orange-lt); }
-
+   
     .footer__impressum p {
       font-size: .83rem;
       line-height: 1.8;
@@ -807,10 +944,9 @@
       <div class="container navbar__inner">
 
         <!-- Logo -->
-        <a href="#start" class="logo" aria-label="Zur Startseite">
-          <div class="logo__icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
-          <div class="logo__text">Verkehrs<span>service</span></div>
-        </a>
+       <a href="#start" class="logo" aria-label="Zur Startseite">
+  <img src="Bausicher logo.png" alt="BauSicher Logo" style="height:170px; width: auto; margin-left: 20px; display: block; padding: 5px 0;">
+</a>
 
         <!-- Desktop Navigation -->
         <ul class="nav-links" role="list">
@@ -1069,7 +1205,7 @@
             </div>
             <div>
               <div class="contact-item__label">Telefon</div>
-              <div class="contact-item__value">Auf Anfrage</div>
+             <a href="tel:+491709807070">0170 9807070</a>
             </div>
           </div>
 
@@ -1079,7 +1215,7 @@
             </div>
             <div>
               <div class="contact-item__label">E-Mail</div>
-              <div class="contact-item__value">Auf Anfrage</div>
+              <a href="mailto:s.kalin@bausicher-service.de">s.kalin@bausicher-service.de</a>
             </div>
           </div>
 
@@ -1148,14 +1284,18 @@
 
         <!-- Brand -->
         <div class="footer__brand">
-          <a href="#start" class="logo" aria-label="Zur Startseite">
-            <div class="logo__icon"><i class="fa-solid fa-road" aria-hidden="true"></i></div>
-            <div class="logo__text">Verkehrs<span>service</span></div>
-          </a>
-          <p>
-            Zuverlässige Kontrolle, Wartung und Dokumentation von Verkehrseinrichtungen – deutschlandweit, rund um die Uhr.
-          </p>
-        </div>
+  <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+    <img src="Bausicher logo.png" alt="BauSicher Logo" style="height: 180px; width: auto;">
+    <div style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--white); line-height: 1.1;">
+      BauSicher<br>
+      <span style="color: var(--brand-blue); font-size: 1.1rem; letter-spacing: 1px;">Verkehrsservice</span>
+    </div>
+  </div>
+  
+  <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; max-width: 320px;">
+    Zuverlässige Kontrolle, Wartung und Dokumentation von Verkehrseinrichtungen – deutschlandweit, rund um die Uhr.
+  </p>
+</div>
 
         <!-- Navigation -->
         <div>
@@ -1169,24 +1309,27 @@
         </div>
 
         <!-- Impressum -->
-        <div>
-          <p class="footer__col-title">Impressum</p>
-          <div class="footer__impressum">
-            <p>
-              Einzelunternehmer<br />
-              Lortzingstr. 9<br />
-              68168 Mannheim<br /><br />
-              USt-IdNr.: DE364870533
-            </p>
-          </div>
-        </div>
+       <div>
+  <p class="footer__col-title">Impressum</p>
+  <div class="footer__impressum">
+    <p>
+      <strong>BauSicher Verkehrsservice</strong><br />
+      Inhaber: S. Kalin<br />
+      Lortzingstr. 9<br />
+      68168 Mannheim<br /><br />
+      Tel: +49 170 9807070<br />
+      E-Mail: s.kalin@bausicher-service.de<br /><br />
+      USt-IdNr.: DE364870533
+    </p>
+  </div>
+</div>
 
       </div>
 
       <!-- Bottom Bar -->
       <div class="footer__bottom">
         <p class="footer__copy">
-          &copy; <span id="year"></span> Verkehrsservice. Alle Rechte vorbehalten.
+          &copy; <span id="year"></span> BauSicher Verkehrsservice. Alle Rechte vorbehalten.
         </p>
         <div class="footer__legal">
           <a href="#impressum">Impressum</a>
@@ -1232,4 +1375,3 @@
 
 </body>
 </html>
-
