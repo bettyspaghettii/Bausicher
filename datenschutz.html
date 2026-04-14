@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutzerklärung – BauSicher Verkehrsservice</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-main: #fdfcf9;
+      --bg-accent: #f5f1e8;
+      --text-main: #3c3935;
+      --text-muted: #79746e;
+      --slate: #79746e;
+      --silver: #b0aba4;
+      --ash: #e0ddd5;
+      --brand-blue: #4a7cce;
+      --brand-blue-lt: #dee9fc;
+      --white: #ffffff;
+      --off-white: #f5f1e8;
+      --orange-lt: #6b94dc;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --shadow-card: 0 10px 30px rgba(60, 57, 53, 0.05);
+      --radius: 12px;
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--text-main);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--brand-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { width: 90%; max-width: 860px; margin-inline: auto; }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 252, 249, 0.95);
+      border-bottom: 1px solid var(--ash);
+      backdrop-filter: blur(10px);
+    }
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 90px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .nav-back:hover { color: var(--brand-blue); text-decoration: none; }
+
+    /* Hero */
+    .page-hero {
+      background: var(--bg-accent);
+      border-bottom: 1px solid var(--ash);
+      padding: 64px 0 56px;
+    }
+    .page-hero__label {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--brand-blue);
+      margin-bottom: 14px;
+    }
+    .page-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+    .page-hero__meta {
+      font-size: .85rem;
+      color: var(--text-muted);
+    }
+    .page-hero__meta i { margin-right: 6px; }
+
+    /* Content */
+    .content {
+      padding: 72px 0 96px;
+    }
+
+    .toc {
+      background: var(--bg-accent);
+      border: 1px solid var(--ash);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 56px;
+    }
+    .toc__title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+    .toc ol {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      counter-reset: toc-counter;
+    }
+    .toc ol li {
+      counter-increment: toc-counter;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-size: .9rem;
+    }
+    .toc ol li::before {
+      content: counter(toc-counter) ".";
+      color: var(--brand-blue);
+      font-weight: 600;
+      font-size: .8rem;
+      min-width: 18px;
+    }
+    .toc ol li a {
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .toc ol li a:hover { color: var(--brand-blue); text-decoration: none; }
+
+    .section-block {
+      margin-bottom: 52px;
+      scroll-margin-top: 110px;
+    }
+    .section-block__num {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--brand-blue);
+      margin-bottom: 8px;
+    }
+    .section-block__title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--ash);
+    }
+    .section-block p {
+      font-size: .97rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .section-block p:last-child { margin-bottom: 0; }
+    .section-block ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 14px 0;
+    }
+    .section-block ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .97rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .section-block ul li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand-blue);
+      flex-shrink: 0;
+      margin-top: 9px;
+    }
+
+    .info-box {
+      background: var(--brand-blue-lt);
+      border: 1px solid rgba(74, 124, 206, 0.2);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 20px 0;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .info-box i {
+      color: var(--brand-blue);
+      font-size: 1rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .info-box p {
+      font-size: .9rem !important;
+      color: #2a4f8a !important;
+      margin-bottom: 0 !important;
+    }
+
+    .contact-box {
+      background: var(--bg-accent);
+      border: 1px solid var(--ash);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-top: 20px;
+    }
+    .contact-box p {
+      font-size: .95rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 0 !important;
+    }
+    .contact-box strong { color: var(--text-main); }
+
+    /* Footer */
+   .footer {
+  position: relative; /* Wichtig, damit z-index funktioniert */
+  z-index: 999;       /* Schiebt den Footer ganz nach vorn */
+}
+    .footer__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer__copy { font-size: .8rem; color: var(--text-muted); }
+    .footer__legal {
+      display: flex;
+      gap: 20px;
+      font-size: .8rem;
+    }
+    .footer__legal a {
+  position: relative;
+  z-index: 1000;      /* Macht die Links extra "klickbar" */
+  cursor: pointer;    /* Erzwingt den Zeigefinger der Maus */
+}
+    .footer__legal a:hover { color: var(--brand-blue); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .toc { padding: 22px 20px; }
+      .contact-box { padding: 22px 20px; }
+      .section-block__title { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar" aria-label="Navigation">
+      <div class="container navbar__inner">
+        <a href="index.html" class="logo" aria-label="Zur Startseite">
+          <img src="Bausicher logo.png" alt="BauSicher Logo" style="height: 160px; width: auto;">
+        </a>
+        <a href="index.html" class="nav-back">
+          <i class="fa-solid fa-arrow-left"></i>
+          Zurück zur Startseite
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <span class="page-hero__label">Rechtliches</span>
+      <h1 class="page-hero__title">Datenschutzerklärung</h1>
+      <p class="page-hero__meta">
+        <i class="fa-regular fa-calendar"></i>
+        Stand: April 2025
+      </p>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main class="content">
+    <div class="container">
+
+      <!-- Inhaltsverzeichnis -->
+      <nav class="toc" aria-label="Inhaltsverzeichnis">
+        <p class="toc__title">Inhaltsverzeichnis</p>
+        <ol>
+          <li><a href="#verantwortlicher">Verantwortlicher</a></li>
+          <li><a href="#grundsaetze">Grundsätze der Datenverarbeitung</a></li>
+          <li><a href="#kontaktformular">Kontaktformular</a></li>
+          <li><a href="#kontaktaufnahme">Kontaktaufnahme per E-Mail oder Telefon</a></li>
+          <li><a href="#hosting">Hosting & Webserver-Logs</a></li>
+          <li><a href="#google-fonts">Google Fonts</a></li>
+          <li><a href="#rechte">Ihre Rechte</a></li>
+          <li><a href="#sicherheit">Datensicherheit</a></li>
+          <li><a href="#aenderungen">Änderungen dieser Erklärung</a></li>
+        </ol>
+      </nav>
+
+      <!-- 1. Verantwortlicher -->
+      <div class="section-block" id="verantwortlicher">
+        <p class="section-block__num">01</p>
+        <h2 class="section-block__title">Verantwortlicher</h2>
+        <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer nationaler Datenschutzgesetze ist:</p>
+        <div class="contact-box">
+          <p>
+            <strong>BauSicher Verkehrsservice</strong><br />
+            Inhaber: Şükür Kalin<br />
+            Lortzingstr. 9<br />
+            68168 Mannheim<br /><br />
+            Telefon: <a href="tel:+491709807070">+49 170 9807070</a><br />
+            E-Mail: <a href="mailto:s.kalin@bausicher-service.de">s.kalin@bausicher-service.de</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- 2. Grundsätze -->
+      <div class="section-block" id="grundsaetze">
+        <p class="section-block__num">02</p>
+        <h2 class="section-block__title">Grundsätze der Datenverarbeitung</h2>
+        <p>Wir verarbeiten personenbezogene Daten grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung erfolgt auf Basis der folgenden Rechtsgrundlagen:</p>
+        <ul>
+          <li>Art. 6 Abs. 1 lit. a DSGVO – Einwilligung der betroffenen Person</li>
+          <li>Art. 6 Abs. 1 lit. b DSGVO – Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen</li>
+          <li>Art. 6 Abs. 1 lit. f DSGVO – Wahrung berechtigter Interessen</li>
+        </ul>
+        <p>Wir setzen keine Cookies, kein Tracking und keine Analyse-Tools (z. B. Google Analytics) ein. Es werden keine Nutzerprofile erstellt.</p>
+      </div>
+
+      <!-- 3. Kontaktformular -->
+      <div class="section-block" id="kontaktformular">
+        <p class="section-block__num">03</p>
+        <h2 class="section-block__title">Kontaktformular</h2>
+        <p>Auf unserer Website steht ein Kontaktformular zur Verfügung. Wenn Sie dieses nutzen, werden die von Ihnen eingegebenen Daten an uns übermittelt und gespeichert. Folgende Daten werden erhoben:</p>
+        <ul>
+          <li>Name</li>
+          <li>E-Mail-Adresse</li>
+          <li>Betreff</li>
+          <li>Nachrichtentext</li>
+        </ul>
+        <p>Die Verarbeitung erfolgt zum Zweck der Bearbeitung Ihrer Anfrage und einer möglichen Kontaktaufnahme auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bearbeitung von Anfragen) sowie Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage auf den Abschluss eines Vertrages abzielt.</p>
+        <p>Die Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben. Nach abschließender Bearbeitung werden die Daten gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+        <div class="info-box">
+          <i class="fa-solid fa-circle-info"></i>
+          <p>Die Nutzung des Kontaktformulars ist freiwillig. Alternativ können Sie uns jederzeit per E-Mail oder Telefon kontaktieren.</p>
+        </div>
+      </div>
+
+      <!-- 4. Kontakt per E-Mail / Telefon -->
+      <div class="section-block" id="kontaktaufnahme">
+        <p class="section-block__num">04</p>
+        <h2 class="section-block__title">Kontaktaufnahme per E-Mail oder Telefon</h2>
+        <p>Wenn Sie uns per E-Mail oder Telefon kontaktieren, werden die übermittelten Daten (z. B. Name, E-Mail-Adresse, Telefonnummer, Nachrichteninhalt) bei uns gespeichert, um Ihre Anfrage zu bearbeiten.</p>
+        <p>Diese Daten geben wir nicht ohne Ihre Einwilligung weiter. Die Rechtsgrundlage für die Verarbeitung bildet Art. 6 Abs. 1 lit. f DSGVO bzw. Art. 6 Abs. 1 lit. b DSGVO bei vertragsbezogenen Anfragen.</p>
+      </div>
+
+      <!-- 5. Hosting -->
+      <div class="section-block" id="hosting">
+        <p class="section-block__num">05</p>
+        <h2 class="section-block__title">Hosting &amp; Webserver-Logs</h2>
+        <p>Diese Website wird bei einem externen Hosting-Anbieter betrieben. Bei jedem Abruf der Website werden durch den Webserver automatisch sogenannte Server-Log-Dateien erfasst. Diese enthalten:</p>
+        <ul>
+          <li>IP-Adresse des anfragenden Geräts (anonymisiert)</li>
+          <li>Datum und Uhrzeit des Zugriffs</li>
+          <li>Aufgerufene URL</li>
+          <li>Übertragene Datenmenge</li>
+          <li>Browsertyp und Betriebssystem</li>
+        </ul>
+        <p>Diese Daten sind technisch notwendig für die Auslieferung der Website und dienen der Sicherheit des Betriebs (Art. 6 Abs. 1 lit. f DSGVO). Eine Zusammenführung mit anderen Datenquellen findet nicht statt. Die Logs werden nach spätestens 7 Tagen automatisch gelöscht.</p>
+      </div>
+
+      <!-- 6. Google Fonts -->
+      <div class="section-block" id="google-fonts">
+        <p class="section-block__num">06</p>
+        <h2 class="section-block__title">Google Fonts</h2>
+        <p>Diese Website verwendet Google Fonts, einen Dienst der Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Die Schriftarten werden beim Laden der Seite direkt von Google-Servern abgerufen, wodurch Ihre IP-Adresse an Google übermittelt werden kann.</p>
+        <p>Die Nutzung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer einheitlichen Darstellung der Website). Informationen zur Datenverarbeitung durch Google finden Sie unter <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+        <div class="info-box">
+          <i class="fa-solid fa-lightbulb"></i>
+          <p>Um die Übertragung an Google vollständig zu vermeiden, können die Schriftdateien alternativ lokal auf dem Webserver gespeichert werden. Sprechen Sie uns gerne darauf an.</p>
+        </div>
+      </div>
+
+      <!-- 7. Ihre Rechte -->
+      <div class="section-block" id="rechte">
+        <p class="section-block__num">07</p>
+        <h2 class="section-block__title">Ihre Rechte</h2>
+        <p>Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:</p>
+        <ul>
+          <li><strong>Auskunft</strong> (Art. 15 DSGVO) – Sie können Auskunft über die von uns gespeicherten Daten verlangen.</li>
+          <li><strong>Berichtigung</strong> (Art. 16 DSGVO) – Sie können die Berichtigung unrichtiger Daten verlangen.</li>
+          <li><strong>Löschung</strong> (Art. 17 DSGVO) – Sie können die Löschung Ihrer Daten verlangen, sofern keine Aufbewahrungspflicht besteht.</li>
+          <li><strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO) – Sie können die eingeschränkte Verarbeitung Ihrer Daten verlangen.</li>
+          <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO) – Sie können die Herausgabe Ihrer Daten in einem gängigen Format verlangen.</li>
+          <li><strong>Widerspruch</strong> (Art. 21 DSGVO) – Sie können der Verarbeitung Ihrer Daten widersprechen.</li>
+        </ul>
+        <p>Zur Ausübung Ihrer Rechte wenden Sie sich bitte an die oben genannte Kontaktadresse. Zusätzlich haben Sie das Recht, sich bei der zuständigen Datenschutz-Aufsichtsbehörde zu beschweren:</p>
+        <div class="contact-box">
+          <p>
+            <strong>Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg</strong><br />
+            Postfach 10 29 32, 70025 Stuttgart<br />
+            <a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank" rel="noopener">www.baden-wuerttemberg.datenschutz.de</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- 8. Datensicherheit -->
+      <div class="section-block" id="sicherheit">
+        <p class="section-block__num">08</p>
+        <h2 class="section-block__title">Datensicherheit</h2>
+        <p>Diese Website verwendet eine SSL- bzw. TLS-Verschlüsselung zur sicheren Übertragung vertraulicher Inhalte. Eine verschlüsselte Verbindung erkennen Sie an dem „https://" in der Adresszeile Ihres Browsers.</p>
+        <p>Wir treffen darüber hinaus technische und organisatorische Maßnahmen, um Ihre Daten gegen zufällige oder vorsätzliche Manipulation, Verlust, Zerstörung oder den Zugriff unberechtigter Personen zu schützen.</p>
+      </div>
+
+      <!-- 9. Änderungen -->
+      <div class="section-block" id="aenderungen">
+        <p class="section-block__num">09</p>
+        <h2 class="section-block__title">Änderungen dieser Erklärung</h2>
+        <p>Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen, um sie stets den aktuellen rechtlichen Anforderungen entsprechend zu halten oder um Änderungen unserer Leistungen umzusetzen. Die jeweils aktuelle Version ist auf dieser Seite abrufbar. Stand der aktuellen Fassung: April 2025.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; <span id="year"></span> BauSicher Verkehrsservice. Alle Rechte vorbehalten.</p>
+        <div class="footer__legal">
+          <a href="index.html#impressum">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
