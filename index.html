@@ -692,9 +692,293 @@
     #menu-toggle:checked ~ .navbar__inner .hamburger span:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
+
+    /* ============================================================
+       NEU: Zertifizierungs-Banner
+       ============================================================ */
+    .cert-bar {
+      background: linear-gradient(90deg, #1a2f52 0%, #243d6a 50%, #1a2f52 100%);
+      border-bottom: 1px solid rgba(74, 124, 206, 0.25);
+      padding: 10px 0;
+      overflow: hidden;
+    }
+    .cert-bar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .cert-bar__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: rgba(74, 124, 206, 0.25);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cert-bar__icon i {
+      color: #8ab4f8;
+      font-size: .75rem;
+    }
+    .cert-bar__text {
+      font-family: var(--font-body);
+      font-size: .8rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.88);
+      letter-spacing: .02em;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .cert-bar__text strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .cert-bar__divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+    }
+    .cert-bar__pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cert-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(74, 124, 206, 0.2);
+      border: 1px solid rgba(74, 124, 206, 0.35);
+      color: #a8c4f0;
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    @media (max-width: 680px) {
+      .cert-bar__divider { display: none; }
+      .cert-bar__text { font-size: .74rem; }
+    }
+
+    /* ============================================================
+       NEU: Referenzen-Slider
+       ============================================================ */
+    .references {
+      background: #f7f8fa;
+      padding: 96px 0;
+      overflow: hidden;
+    }
+    .references__header {
+      margin-bottom: 48px;
+    }
+    .references__track-wrapper {
+      position: relative;
+    }
+    .references__track {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 12px 0 28px;
+      /* Start padding so first card isn't edge-flush */
+      padding-left: calc((100% - 1160px * 0.9) / 2);
+      padding-right: calc((100% - 1160px * 0.9) / 2);
+    }
+    .references__track::-webkit-scrollbar { display: none; }
+
+    .ref-card {
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      width: 320px;
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(60, 57, 53, 0.07);
+      border: 1px solid rgba(60, 57, 53, 0.07);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .ref-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(60, 57, 53, 0.13);
+    }
+    .ref-card__img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #dde3ec 0%, #c8d0de 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ref-card__img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          rgba(255,255,255,0.06) 10px,
+          rgba(255,255,255,0.06) 20px
+        );
+    }
+    .ref-card__img-placeholder i {
+      font-size: 1.8rem;
+      color: rgba(74, 124, 206, 0.4);
+      position: relative;
+      z-index: 1;
+    }
+    .ref-card__img-placeholder span {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(74, 124, 206, 0.5);
+      position: relative;
+      z-index: 1;
+    }
+    .ref-card__body {
+      padding: 22px 24px 26px;
+    }
+    .ref-card__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--brand-blue-lt);
+      color: var(--brand-blue);
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .ref-card__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .ref-card__leistung {
+      font-size: .82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Slider navigation dots */
+    .references__dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .ref-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ash);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .ref-dot.active {
+      background: var(--brand-blue);
+      transform: scale(1.25);
+    }
+
+    /* Arrow buttons */
+    .references__arrows {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 16px;
+      width: 90%;
+      max-width: 1160px;
+      margin-inline: auto;
+    }
+    .ref-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1.5px solid var(--ash);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: .85rem;
+      transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+      box-shadow: 0 2px 8px rgba(60, 57, 53, 0.06);
+    }
+    .ref-arrow:hover {
+      background: var(--brand-blue);
+      border-color: var(--brand-blue);
+      color: var(--white);
+      transform: scale(1.08);
+    }
+
+    @media (max-width: 680px) {
+      .ref-card { width: 84vw; }
+      .references__track {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+    }
+    @media (min-width: 681px) and (max-width: 1000px) {
+      .ref-card { width: 280px; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- ============================================================
+       NEU: Zertifizierungs-Banner (ganz oben im body)
+       ============================================================ -->
+  <div class="cert-bar" role="banner" aria-label="Zertifizierungen und Normen">
+    <div class="cert-bar__inner">
+      <div class="cert-bar__icon" aria-hidden="true">
+        <i class="fa-solid fa-certificate"></i>
+      </div>
+      <p class="cert-bar__text">
+        <strong>Ihr Experte</strong> für die Wartung und Kontrolle an Verkehrseinrichtungen
+      </p>
+      <div class="cert-bar__divider" aria-hidden="true"></div>
+      <div class="cert-bar__pills" role="list" aria-label="Anerkannte Normen">
+        <span class="cert-pill" role="listitem">
+          <i class="fa-solid fa-check" aria-hidden="true"></i>
+          MVAS 99
+        </span>
+        <span class="cert-pill" role="listitem">
+          <i class="fa-solid fa-check" aria-hidden="true"></i>
+          RSA 21
+        </span>
+        <span class="cert-pill" role="listitem">
+          <i class="fa-solid fa-check" aria-hidden="true"></i>
+          ZTV-SA 97
+        </span>
+      </div>
+    </div>
+  </div>
 
   <!-- NAVBAR -->
   <header>
@@ -707,6 +991,7 @@
         <ul class="nav-links" role="list">
           <li><a href="#start">Start</a></li>
           <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#referenzen">Referenzen</a></li>
           <li><a href="#ueber-uns">Über uns</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
@@ -717,6 +1002,7 @@
       <div class="mobile-menu" role="navigation" aria-label="Mobile Navigation">
         <a href="#start" onclick="document.getElementById('menu-toggle').checked=false">Start</a>
         <a href="#leistungen" onclick="document.getElementById('menu-toggle').checked=false">Leistungen</a>
+        <a href="#referenzen" onclick="document.getElementById('menu-toggle').checked=false">Referenzen</a>
         <a href="#ueber-uns" onclick="document.getElementById('menu-toggle').checked=false">Über uns</a>
         <a href="#kontakt" onclick="document.getElementById('menu-toggle').checked=false">Kontakt</a>
       </div>
@@ -832,6 +1118,168 @@
         </article>
       </div>
     </div>
+  </section>
+
+  <!-- ============================================================
+       NEU: REFERENZEN-SLIDER
+       ============================================================ -->
+  <section class="references" id="referenzen" aria-labelledby="references-heading">
+    <div class="container">
+      <div class="references__header">
+        <span class="section-label reveal">Referenzen</span>
+        <h2 class="section-title reveal reveal-delay-1" id="references-heading">
+          Unsere Referenzen
+        </h2>
+        <p class="section-sub reveal reveal-delay-2">
+          Ausgewählte Projekte, bei denen wir mit professioneller Verkehrssicherung und lückenloser Kontrolle überzeugt haben.
+        </p>
+      </div>
+    </div>
+
+    <div class="references__arrows" aria-label="Slider-Navigation">
+      <button class="ref-arrow" id="ref-prev" aria-label="Vorherige Referenz">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <button class="ref-arrow" id="ref-next" aria-label="Nächste Referenz">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="references__track-wrapper">
+      <div class="references__track" id="refTrack" role="list" aria-label="Referenzprojekte">
+
+        <!-- Karte 1 -->
+        <article class="ref-card reveal" role="listitem">
+          <div class="ref-card__img-placeholder" aria-label="Bildplatzhalter">
+            <i class="fa-solid fa-road" aria-hidden="true"></i>
+            <span>Bild Platzhalter</span>
+          </div>
+          <div class="ref-card__body">
+            <div class="ref-card__tag">
+              <i class="fa-solid fa-highway" aria-hidden="true"></i>
+              Autobahn
+            </div>
+            <h3 class="ref-card__title">A65 FBE Kandel-Süd</h3>
+            <p class="ref-card__leistung">Verkehrssicherung und Kontrolle an der Bundesautobahn A65</p>
+          </div>
+        </article>
+
+        <!-- Karte 2 -->
+        <article class="ref-card reveal reveal-delay-1" role="listitem">
+          <div class="ref-card__img-placeholder" aria-label="Bildplatzhalter">
+            <i class="fa-solid fa-building" aria-hidden="true"></i>
+            <span>Bild Platzhalter</span>
+          </div>
+          <div class="ref-card__body">
+            <div class="ref-card__tag">
+              <i class="fa-solid fa-city" aria-hidden="true"></i>
+              Stadtprojekt
+            </div>
+            <h3 class="ref-card__title">KiTa Projekt Sandhofen, Mannheim</h3>
+            <p class="ref-card__leistung">Absicherung und Kontrolle der Verkehrseinrichtungen rund um die Baustelle</p>
+          </div>
+        </article>
+
+        <!-- Karte 3 -->
+        <article class="ref-card reveal reveal-delay-2" role="listitem">
+          <div class="ref-card__img-placeholder" aria-label="Bildplatzhalter">
+            <i class="fa-solid fa-road" aria-hidden="true"></i>
+            <span>Bild Platzhalter</span>
+          </div>
+          <div class="ref-card__body">
+            <div class="ref-card__tag">
+              <i class="fa-solid fa-highway" aria-hidden="true"></i>
+              Autobahn
+            </div>
+            <h3 class="ref-card__title">A46 ASS Grevenbroich – AD Holz</h3>
+            <p class="ref-card__leistung">Verkehrssicherung an der Bundesautobahn</p>
+          </div>
+        </article>
+
+        <!-- Karte 4 -->
+        <article class="ref-card reveal reveal-delay-3" role="listitem">
+          <div class="ref-card__img-placeholder" aria-label="Bildplatzhalter">
+            <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i>
+            <span>Bild Platzhalter</span>
+          </div>
+          <div class="ref-card__body">
+            <div class="ref-card__tag">
+              <i class="fa-solid fa-highway" aria-hidden="true"></i>
+              Autobahn
+            </div>
+            <h3 class="ref-card__title">A38 A72 Rötha Autobahnkreuz</h3>
+            <p class="ref-card__leistung">Verkehrssicherung und Kontrolle am Autobahnkreuz Rötha</p>
+          </div>
+        </article>
+
+        <!-- Karte 5 -->
+        <article class="ref-card reveal" role="listitem">
+          <div class="ref-card__img-placeholder" aria-label="Bildplatzhalter">
+            <i class="fa-solid fa-archway" aria-hidden="true"></i>
+            <span>Bild Platzhalter</span>
+          </div>
+          <div class="ref-card__body">
+            <div class="ref-card__tag">
+              <i class="fa-solid fa-tunnel" aria-hidden="true"></i>
+              Tunnel
+            </div>
+            <h3 class="ref-card__title">Verkehrssicherung Tunnel Schmücke</h3>
+            <p class="ref-card__leistung">Professionelle Absicherung und lückenlose Dokumentation im Tunnelbereich</p>
+          </div>
+        </article>
+
+        <!-- Karte 6 -->
+        <article class="ref-card reveal reveal-delay-1" role="listitem">
+          <div class="ref-card__img-placeholder" aria-label="Bildplatzhalter">
+            <i class="fa-solid fa-person-biking" aria-hidden="true"></i>
+            <span>Bild Platzhalter</span>
+          </div>
+          <div class="ref-card__body">
+            <div class="ref-card__tag">
+              <i class="fa-solid fa-road" aria-hidden="true"></i>
+              Landesstraße
+            </div>
+            <h3 class="ref-card__title">L390 Willich-Schiefbahn – Kaarst</h3>
+            <p class="ref-card__leistung">Decken- und Radwegsanierung / Kontrolle der Verkehrseinrichtungen</p>
+          </div>
+        </article>
+
+        <!-- Karte 7 -->
+        <article class="ref-card reveal reveal-delay-2" role="listitem">
+          <div class="ref-card__img-placeholder" aria-label="Bildplatzhalter">
+            <i class="fa-solid fa-train" aria-hidden="true"></i>
+            <span>Bild Platzhalter</span>
+          </div>
+          <div class="ref-card__body">
+            <div class="ref-card__tag">
+              <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
+              Infrastruktur
+            </div>
+            <h3 class="ref-card__title">Kronberg-Taunus-Bahnhof</h3>
+            <p class="ref-card__leistung">Verkehrssicherung und Kontrolle im Bereich des Bahnhofsprojekts</p>
+          </div>
+        </article>
+
+        <!-- Karte 8 -->
+        <article class="ref-card reveal reveal-delay-3" role="listitem">
+          <div class="ref-card__img-placeholder" aria-label="Bildplatzhalter">
+            <i class="fa-solid fa-signs-post" aria-hidden="true"></i>
+            <span>Bild Platzhalter</span>
+          </div>
+          <div class="ref-card__body">
+            <div class="ref-card__tag">
+              <i class="fa-solid fa-road" aria-hidden="true"></i>
+              Landesstraße
+            </div>
+            <h3 class="ref-card__title">Schöneck-Nidderau L3009/L3008</h3>
+            <p class="ref-card__leistung">Verkehrssicherung und Kontrolle auf den Landesstraßen L3009 und L3008</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="references__dots" id="refDots" role="tablist" aria-label="Karten-Navigation"></div>
   </section>
 
   <!-- ÜBER UNS -->
@@ -1010,6 +1458,7 @@
           <ul class="footer__links" role="list">
             <li><a href="#start">Start</a></li>
             <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#referenzen">Referenzen</a></li>
             <li><a href="#ueber-uns">Über uns</a></li>
             <li><a href="#kontakt">Kontakt</a></li>
           </ul>
@@ -1062,6 +1511,83 @@
     }, { threshold: 0.12 });
 
     revealEls.forEach(el => observer.observe(el));
+
+    /* ============================================================
+       NEU: Referenzen-Slider Logik
+       ============================================================ */
+    (function () {
+      const track = document.getElementById('refTrack');
+      const dotsContainer = document.getElementById('refDots');
+      const prevBtn = document.getElementById('ref-prev');
+      const nextBtn = document.getElementById('ref-next');
+      const cards = track.querySelectorAll('.ref-card');
+      const total = cards.length;
+      let currentIndex = 0;
+
+      // Dots erzeugen
+      cards.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'ref-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Referenz ' + (i + 1));
+        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        dot.addEventListener('click', () => scrollToCard(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      function getDots() {
+        return dotsContainer.querySelectorAll('.ref-dot');
+      }
+
+      function updateDots(idx) {
+        getDots().forEach((d, i) => {
+          d.classList.toggle('active', i === idx);
+          d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+        });
+      }
+
+      function scrollToCard(idx) {
+        if (idx < 0) idx = 0;
+        if (idx >= total) idx = total - 1;
+        currentIndex = idx;
+        const card = cards[idx];
+        const trackRect = track.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        const scrollLeft = track.scrollLeft + cardRect.left - trackRect.left;
+        track.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        updateDots(idx);
+      }
+
+      prevBtn.addEventListener('click', () => scrollToCard(currentIndex - 1));
+      nextBtn.addEventListener('click', () => scrollToCard(currentIndex + 1));
+
+      // Sync dots on manual scroll
+      let scrollTimer;
+      track.addEventListener('scroll', () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          const trackRect = track.getBoundingClientRect();
+          let closestIdx = 0;
+          let closestDist = Infinity;
+          cards.forEach((card, i) => {
+            const cardRect = card.getBoundingClientRect();
+            const dist = Math.abs(cardRect.left - trackRect.left);
+            if (dist < closestDist) {
+              closestDist = dist;
+              closestIdx = i;
+            }
+          });
+          currentIndex = closestIdx;
+          updateDots(closestIdx);
+        }, 80);
+      }, { passive: true });
+
+      // Keyboard navigation
+      track.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') scrollToCard(currentIndex + 1);
+        if (e.key === 'ArrowLeft') scrollToCard(currentIndex - 1);
+      });
+    })();
   </script>
 
 </body>
